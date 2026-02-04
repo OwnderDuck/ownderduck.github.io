@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/ffff.png">
+  <link rel="icon" href="/img/ffff.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="OwnderDuck">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="放在最前 %%% sto 神犇 dalao yuruilin dalao 神犇 orz %%%  背景 作者是蒟蒻，最近在开发 3D 游戏，见洛谷上似乎并没有关于 raylib 的文章，故作此篇。  广告语 你是否有以下苦恼？  想做游戏却只会写黑框框？ 游戏引擎过于复杂搞不懂？ 算法可视化受像素的拘束？  你不必担心，用 。  raylib 是什么？  “raylib是一个简单易用的库，可以享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 raylib 进行图形化相关开发">
+<meta property="og:url" content="https://froog.icu/post/use-raylib/index.html">
+<meta property="og:site_name" content="FROOG.ICU">
+<meta property="og:description" content="放在最前 %%% sto 神犇 dalao yuruilin dalao 神犇 orz %%%  背景 作者是蒟蒻，最近在开发 3D 游戏，见洛谷上似乎并没有关于 raylib 的文章，故作此篇。  广告语 你是否有以下苦恼？  想做游戏却只会写黑框框？ 游戏引擎过于复杂搞不懂？ 算法可视化受像素的拘束？  你不必担心，用 。  raylib 是什么？  “raylib是一个简单易用的库，可以享">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ts4.cn.mm.bing.net/th?id=ODLS.42805cc7-3497-43eb-8460-1fd26231a19b&amp;w=32&amp;h=32&amp;qlt=90&amp;pcl=fffffa&amp;o=6&amp;pid=1.2">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/d2jlkdht.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/e4pabcm4.png">
+<meta property="article:published_time" content="2025-03-02T01:00:05.000Z">
+<meta property="article:modified_time" content="2026-02-03T07:13:34.990Z">
+<meta property="article:author" content="OwnderDuck">
+<meta property="article:tag" content="科技·工程">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="raylib">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ts4.cn.mm.bing.net/th?id=ODLS.42805cc7-3497-43eb-8460-1fd26231a19b&amp;w=32&amp;h=32&amp;qlt=90&amp;pcl=fffffa&amp;o=6&amp;pid=1.2">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>使用 raylib 进行图形化相关开发 - FROOG.ICU</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/my-icons.css">
+<link rel="stylesheet" href="https://api.froog.icu/fontawesome-free-7.1.0-web/css/all.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"froog.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":32,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="FROOG.ICU" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>FROOG.ICU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://mc.froog.icu" target="_self">
+                <i class="iconfont icon-creeper"></i>
+                <span>MC.FROOG.ICU</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://froog.icu/another_graph_editor/" target="_self">
+                <i class="fa-solid fa-circle-nodes"></i>
+                <span>graph</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://froog.icu/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用 raylib 进行图形化相关开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-02 09:00" pubdate>
+          March 2, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用 raylib 进行图形化相关开发</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on February 3, 2026 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="放在最前"><a class="markdownIt-Anchor" href="#放在最前"></a> 放在最前</h1>
+<p>%%% sto 神犇 dalao yuruilin dalao 神犇 orz %%%</p>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>作者是蒟蒻，最近在开发 3D 游戏，见洛谷上似乎并没有关于 raylib 的文章，故作此篇。</p>
+<h2 id="广告语"><a class="markdownIt-Anchor" href="#广告语"></a> 广告语</h2>
+<p>你是否有以下<strong>苦恼</strong>？</p>
+<ul>
+<li>想做<strong>游戏</strong>却只会写<strong>黑框框</strong>？</li>
+<li><strong>游戏引擎</strong>过于<strong>复杂</strong>搞不懂？</li>
+<li>算法可视化受像素的<strong>拘束</strong>？</li>
+</ul>
+<p>你<strong>不必担心</strong>，用<br />
+<img src="https://ts4.cn.mm.bing.net/th?id=ODLS.42805cc7-3497-43eb-8460-1fd26231a19b&amp;w=32&amp;h=32&amp;qlt=90&amp;pcl=fffffa&amp;o=6&amp;pid=1.2" srcset="/img/loading.gif" lazyload alt="raylib" />。</p>
+<h2 id="raylib-是什么"><a class="markdownIt-Anchor" href="#raylib-是什么"></a> raylib 是什么？</h2>
+<blockquote>
+<p>“raylib是一个<strong>简单易用</strong>的库，可以享受<strong>视频游戏编程</strong>的乐趣。” —— <a target="_blank" rel="noopener" href="https://www.raylib.com/">官网</a></p>
+</blockquote>
+<h2 id="有什么用"><a class="markdownIt-Anchor" href="#有什么用"></a> 有什么用？</h2>
+<ul>
+<li>独立游戏开发</li>
+<li>算法可视化</li>
+<li><s><strong>装B</strong></s></li>
+</ul>
+<h1 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始！</h1>
+<h2 id="前置知识"><a class="markdownIt-Anchor" href="#前置知识"></a> 前置知识</h2>
+<p>本文仅讲解<strong>必要的知识</strong>。了解更多，见小熊猫C++作者<strong>瞿华</strong>的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/458335134">raylib绘图库简介</a>。</p>
+<h3 id="环境配置"><a class="markdownIt-Anchor" href="#环境配置"></a> 环境配置</h3>
+<p>推荐工具：<strong>懒人专用<a target="_blank" rel="noopener" href="http://royqh.net/redpandacpp/download/">小熊猫C++</a></strong>（内置 raylib ）。</p>
+<h3 id="相关函数"><a class="markdownIt-Anchor" href="#相关函数"></a> 相关函数</h3>
+<ul>
+<li>
+<p><code>SetConfigFlags(FLAG_MSAA_4X_HINT);</code>启用反锯齿。</p>
+</li>
+<li>
+<p><code>InitWindow(w,h,s);</code>初始化窗口为宽 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span> ，高 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">h</span></span></span></span>，标题为字符串 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span></span></span></span> 。</p>
+</li>
+<li>
+<p><code>SetTargetFPS(f);</code>将最大帧率设置为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 。</p>
+</li>
+<li>
+<p><code>DisableCursor();</code>隐藏光标（防止你在打游戏时光标乱跑。</p>
+</li>
+<li>
+<p><code>BeginDrawing();</code>与<code>EndDrawing();</code>中间夹你要画的东西。</p>
+</li>
+<li>
+<p><code>BeginMode3D(camera);</code>与<code>EndMode3D();</code>以相机 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>a</mi><mi>m</mi><mi>e</mi><mi>r</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">camera</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span></span></span></span> 视角绘制3D模型。</p>
+</li>
+<li>
+<p><code>IsKeyDown(k)</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 键是否被按下。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 一般都是 <code>KEY_</code> + <code>按键名（大写）</code>，如<code>KEY_W</code>。</p>
+</li>
+<li>
+<p><code>DrawCube(Vector3&#123;x,y,z&#125;,a,b,c,cor);</code>绘制一个坐标在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span> ，边长分别为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> ， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> ， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span> ，颜色为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">cor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 的<strong>长方体</strong>。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">cor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 可以是定义好的常量，也可以是<code>&#123;red,green,blue,algha&#125;</code>。</p>
+</li>
+<li>
+<p><strong>更多类似函数，另见<a target="_blank" rel="noopener" href="https://www.raylib.com/cheatsheet/cheatsheet_zh.html">raylib所有API接口中文释义</a>。</strong></p>
+</li>
+</ul>
+<h4 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">DrawCube</span>(Vector3&#123;<span class="hljs-number">600</span>,<span class="hljs-number">60</span>,<span class="hljs-number">600</span>&#125;,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,RED);<span class="hljs-comment">//红色方块</span><br><span class="hljs-built_in">DrawCubeWires</span>(Vector3&#123;<span class="hljs-number">600</span>,<span class="hljs-number">60</span>,<span class="hljs-number">600</span>&#125;,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,BLACK);<span class="hljs-comment">//黑色方框</span><br><span class="hljs-built_in">ClearBackground</span>(SKYBLUE);<span class="hljs-comment">//天蓝色天空</span><br></code></pre></td></tr></table></figure>
+<h6 id="如图"><a class="markdownIt-Anchor" href="#如图"></a> 如图</h6>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/d2jlkdht.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<h3 id="基本结构"><a class="markdownIt-Anchor" href="#基本结构"></a> 基本结构</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;raylib.h&gt;</span><span class="hljs-comment">//raylib有几个头文件，按需使用</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//这几个函数上面讲过了</span><br>	<span class="hljs-built_in">SetConfigFlags</span>(FLAG_MSAA_4X_HINT);<br>	<span class="hljs-built_in">InitWindow</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>, <span class="hljs-string">&quot;United Pineapple Bread&quot;</span>);<br>	<span class="hljs-built_in">SetTargetFPS</span>(<span class="hljs-number">60</span>);<br>	<span class="hljs-built_in">DisableCursor</span>();<br>	<span class="hljs-comment">//相机相关，自行BDFS</span><br>	Camera3D camera = &#123; <span class="hljs-number">0</span> &#125;;<br>	camera.fovy = <span class="hljs-number">60.0f</span>;<br>	camera.projection = CAMERA_PERSPECTIVE;<br>	camera.up = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;;<br><br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">WindowShouldClose</span>()) &#123;<span class="hljs-comment">//按ESC退出</span><br>		<span class="hljs-comment">/*</span><br><span class="hljs-comment">		进行运算</span><br><span class="hljs-comment">		*/</span><br>		<span class="hljs-built_in">BeginDrawing</span>();<br>		<span class="hljs-comment">/*</span><br><span class="hljs-comment">		画的代码</span><br><span class="hljs-comment">		*/</span><br>		<span class="hljs-built_in">BeginMode3D</span>(camera);<br>		<span class="hljs-comment">/*</span><br><span class="hljs-comment">		画3D模型的代码</span><br><span class="hljs-comment">		*/</span><br>		<span class="hljs-built_in">EndMode3D</span>();<br>		<span class="hljs-built_in">EndDrawing</span>();<br>	&#125;<br>	<span class="hljs-built_in">CloseWindow</span>();<span class="hljs-comment">//关闭</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="制作游戏"><a class="markdownIt-Anchor" href="#制作游戏"></a> 制作游戏！</h2>
+<h3 id="1-先写好控制台版本"><a class="markdownIt-Anchor" href="#1-先写好控制台版本"></a> 1、先写好控制台版本</h3>
+<h3 id="2-替换"><a class="markdownIt-Anchor" href="#2-替换"></a> 2、替换</h3>
+<p>用 raylib 的函数替换原来的。</p>
+<ul>
+<li>原来的字符画输出，用现在 raylib 画长方形||长方体的函数代替。</li>
+<li>原来的键盘||鼠标事件，用 raylib 的函数代替。（仅是为了让其<strong>跨平台</strong>）。</li>
+</ul>
+<h3 id="3-升级"><a class="markdownIt-Anchor" href="#3-升级"></a> 3、升级</h3>
+<p>加入 raylib 独有的函数。</p>
+<ul>
+<li>如<code>DrawFPS(x,y);</code>在屏幕 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> 位置输出帧率。</li>
+</ul>
+<h6 id="如图游戏"><a class="markdownIt-Anchor" href="#如图游戏"></a> 如图，游戏</h6>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/e4pabcm4.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<h1 id="结束了"><a class="markdownIt-Anchor" href="#结束了"></a> 结束了？</h1>
+<h2 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h2>
+<p>你已初步掌握游戏开发。<s><strong>快拿去装B。</strong></s></p>
+<h2 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://royqh.net/redpandacpp/download/">小熊猫C++</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/458335134">raylib绘图库简介</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.raylib.com/cheatsheet/cheatsheet_zh.html">raylib所有API接口中文释义</a></li>
+<li><strong>我的小游戏</strong><a target="_blank" rel="noopener" href="https://github.com/OIByte/EasyWorld/">Ownderline</a>(上不去的用<a target="_blank" rel="noopener" href="https://kkgithub.com/OIByte/EasyWorld/">kkgithub</a>)</li>
+</ul>
+<h2 id="祝你们成功滑稽"><a class="markdownIt-Anchor" href="#祝你们成功滑稽"></a> 祝你们成功（滑稽</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A7%91%E6%8A%80%C2%B7%E5%B7%A5%E7%A8%8B/" class="print-no-link">#科技·工程</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/raylib/" class="print-no-link">#raylib</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/use-2fa-in-github/" title="使用 Github 的 2FA（两因素身份验证）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 Github 的 2FA（两因素身份验证）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/eilotik/" title="在 O(n) 的时间复杂度内求点权图上生成树">
+                        <span class="hidden-mobile">在 O(n) 的时间复杂度内求点权图上生成树</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      蒙ICP备2025032257号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

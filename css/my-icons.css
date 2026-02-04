@@ -1,0 +1,70 @@
+/* 只有同时具备 iconfont 和 icon-creeper 类时生效 */
+.iconfont.icon-creeper {
+  /* 1. 强制重置字体，防止显示出乱码方块或空白 */
+  font-family: sans-serif !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  
+  /* 2. 核心：显示模式 */
+  display: inline-block !important;
+  width: 1em !important;
+  height: 1em !important;
+  line-height: 1 !important;
+
+  /* 3. 颜色设置：直接使用导航栏变量，并确保它不是透明的 */
+  background-color: var(--navbar-text-color, currentColor) !important;
+  
+  /* 4. 遮罩逻辑 */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath d='M170.666667 85.333333h682.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334m85.333333 170.666667v170.666667h170.666667v85.333333H341.333333v256h85.333334v-85.333333h170.666666v85.333333h85.333334v-256h-85.333334v-85.333333h170.666667V256h-170.666667v170.666667h-170.666666V256H256z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath d='M170.666667 85.333333h682.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334m85.333333 170.666667v170.666667h170.666667v85.333333H341.333333v256h85.333334v-85.333333h170.666666v85.333333h85.333334v-256h-85.333334v-85.333333h170.666667V256h-170.666667v170.666667h-170.666666V256H256z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  /* 5. 悬停变色联动 */
+  transition: all 0.2s ease-in-out !important;
+  
+  vertical-align: middle !important;
+}
+
+/* 当导航链接悬停时，改变苦力怕的颜色 */
+.nav-link:hover .iconfont.icon-creeper {
+  background-color: var(--link-hover-color, #fff) !important;
+}
+
+/* 隐藏原本可能存在的字体字符内容 */
+.iconfont.icon-creeper:before {
+  content: "" !important;
+}
+
+.icon-luogu {
+  /* 1. 根据 69:100 的比例计算宽度 */
+  /* 如果高度是 1em，宽度应该是 0.69em */
+  width: 0.69em !important;
+  height: 1em !important;
+  
+  /* 2. 布局修正 */
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -0.15em;
+  
+  /* 3. 这里的 margin 很重要 */
+  /* 因为图标太窄，加一点左右间距可以让它在图标组里不那么拥挤 */
+  margin: 0 0.25em !important;
+
+  background-color: currentColor; 
+  
+  /* 4. 遮罩设置 */
+  -webkit-mask-image: url("https://fecdn.luogu.com.cn/luogu/logo-single.png?0a231b572e3eb12887faedad7d00e829");
+  mask-image: url("https://fecdn.luogu.com.cn/luogu/logo-single.png?0a231b572e3eb12887faedad7d00e829");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.icon-luogu:hover {
+  background-color: var(--link-hover-color);
+}

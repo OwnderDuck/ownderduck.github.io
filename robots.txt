@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+
+Sitemap: https://froog.icu/sitemap.xml

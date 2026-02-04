@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/ffff.png">
+  <link rel="icon" href="/img/ffff.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="OwnderDuck">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Eilotikupb\large\mathbf{Eilotik}\\ \large\mathbf{upb}Eilotikupb 关键词：Eilotik，点权图，生成树。  前言 &amp; 摘要 这是有用的废话。 本文介绍一种在 O(n)O(n)O(n) 的时间复杂度内求点权图上生成树（最大 or 最小）的方法。  引入  生成树是什么  概念 生成树是图论中的一个基本概念，它指的是在一个连通图中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 O(n) 的时间复杂度内求点权图上生成树">
+<meta property="og:url" content="https://froog.icu/post/eilotik/index.html">
+<meta property="og:site_name" content="FROOG.ICU">
+<meta property="og:description" content="Eilotikupb\large\mathbf{Eilotik}\\ \large\mathbf{upb}Eilotikupb 关键词：Eilotik，点权图，生成树。  前言 &amp; 摘要 这是有用的废话。 本文介绍一种在 O(n)O(n)O(n) 的时间复杂度内求点权图上生成树（最大 or 最小）的方法。  引入  生成树是什么  概念 生成树是图论中的一个基本概念，它指的是在一个连通图中">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-01-02T12:01:04.000Z">
+<meta property="article:modified_time" content="2026-02-03T07:16:13.311Z">
+<meta property="article:author" content="OwnderDuck">
+<meta property="article:tag" content="算法·理论">
+<meta property="article:tag" content="Eilotik">
+<meta property="article:tag" content="休闲·娱乐">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>在 O(n) 的时间复杂度内求点权图上生成树 - FROOG.ICU</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/my-icons.css">
+<link rel="stylesheet" href="https://api.froog.icu/fontawesome-free-7.1.0-web/css/all.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"froog.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":32,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="FROOG.ICU" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>FROOG.ICU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://mc.froog.icu" target="_self">
+                <i class="iconfont icon-creeper"></i>
+                <span>MC.FROOG.ICU</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://froog.icu/another_graph_editor/" target="_self">
+                <i class="fa-solid fa-circle-nodes"></i>
+                <span>graph</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://froog.icu/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在 O(n) 的时间复杂度内求点权图上生成树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-02 20:01" pubdate>
+          January 2, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在 O(n) 的时间复杂度内求点权图上生成树</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on February 3, 2026 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="1.2em"><mrow><mi mathvariant="bold">E</mi><mi mathvariant="bold">i</mi><mi mathvariant="bold">l</mi><mi mathvariant="bold">o</mi><mi mathvariant="bold">t</mi><mi mathvariant="bold">i</mi><mi mathvariant="bold">k</mi></mrow><mspace linebreak="newline"></mspace><mstyle mathsize="1.2em"><mrow><mi mathvariant="bold">u</mi><mi mathvariant="bold">p</mi><mi mathvariant="bold">b</mi></mrow></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\large\mathbf{Eilotik}\\
+\large\mathbf{upb}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.833328em;vertical-align:0em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathbf">E</span><span class="mord mathbf">i</span><span class="mord mathbf">l</span><span class="mord mathbf">o</span><span class="mord mathbf">t</span><span class="mord mathbf">i</span><span class="mord mathbf">k</span></span></span><span class="mspace newline sizing reset-size6 size7"></span><span class="base"><span class="strut" style="height:1.066656em;vertical-align:-0.23332799999999998em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathbf">u</span><span class="mord mathbf">p</span><span class="mord mathbf">b</span></span></span></span></span></span></p>
+<p>关键词：Eilotik，点权图，生成树。</p>
+<h1 id="前言-摘要"><a class="markdownIt-Anchor" href="#前言-摘要"></a> 前言 &amp; 摘要</h1>
+<p>这是有用的废话。<br />
+本文介绍一种在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 的时间复杂度内求<strong>点权图</strong>上生成树（最大 or 最小）的方法。</p>
+<h1 id="引入"><a class="markdownIt-Anchor" href="#引入"></a> 引入</h1>
+<h2 id="生成树是什么"><a class="markdownIt-Anchor" href="#生成树是什么"></a> 生成树是什么</h2>
+<h3 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h3>
+<p>生成树是图论中的一个基本概念，它指的是在一个<strong>连通图</strong>中，包含图中<strong>所有顶点</strong>且形成<strong>树</strong>结构的<strong>子图</strong>。在处理生成树问题时，最常见的是寻找最小生成树，即边权总和最小的生成树。</p>
+<h1 id="定理"><a class="markdownIt-Anchor" href="#定理"></a> 定理</h1>
+<ol>
+<li>在一个边数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">m</span></span></span></span> 的生成树中，会有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">m</span></span></span></span> 条边。</li>
+<li>在一个由一个点数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 的图所构成的生成树中有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 个点，会有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条边。</li>
+<li>原图的点集等于新生成树的点集。</li>
+</ol>
+<h1 id="算法仅点权图"><a class="markdownIt-Anchor" href="#算法仅点权图"></a> 算法(仅点权图)</h1>
+<h2 id="eilotik-算法"><a class="markdownIt-Anchor" href="#eilotik-算法"></a> Eilotik 算法</h2>
+<h3 id="证明过程"><a class="markdownIt-Anchor" href="#证明过程"></a> 证明过程</h3>
+<p>假设原图是一个图，包含 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> 个顶点和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> 条边。每个顶点具有一个权值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。生成树是该图的一个子图，包含所有顶点且是连通的。</p>
+<p>生成树的权值是该树中所有点的权值之和：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>V</mi></mrow></munder><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">W(T) = \sum_{i \in V} w_i
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3717110000000003em;vertical-align:-1.321706em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.321706em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W(T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span> 是生成树的权值，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> 是图的点集。</p>
+<p>在构建生成树时，我们不需要关心选择哪些边，只需要关心哪些顶点包含在内。因为生成树中的每个顶点都必须包含，而每个顶点的权值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 都被加入到生成树的权值中。因此，<strong>生成树的权值总是与图中所有点的权值之和相等。</strong></p>
+<h3 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span><span class="hljs-comment">//万能头</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<span class="hljs-comment">//使用命名空间，这样后在cin/cout等前不用加std::等</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">114515</span>;<span class="hljs-comment">//最大点数</span><br><span class="hljs-type">int</span> w[N]<span class="hljs-comment">/*原图点权*/</span>,sum<span class="hljs-comment">/*生成树的总点权*/</span>=<span class="hljs-number">0</span>,n<span class="hljs-comment">/*点数*/</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-comment">//主函数</span><br>    cin&gt;&gt;n;<span class="hljs-comment">//输入点数</span><br>  	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;w[i];<span class="hljs-comment">//输入个点点权</span><br>  	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) sum+=w[i];<span class="hljs-comment">//累加</span><br>  	cout&lt;&lt;sum;<span class="hljs-comment">//输出</span><br>  	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//结束</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="优化"><a class="markdownIt-Anchor" href="#优化"></a> 优化</h3>
+<p>让我们观察一下<code>for(int i=1;i&lt;=n;i++) cin&gt;&gt;w[i];//输入个点点权</code>和<code>for(int i=1;i&lt;=n;i++) sum+=w[i];//累加</code>。合并同类项<code>for(int i=1;i&lt;=n;i++)</code>，易得：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) &#123;<br>  	cin&gt;&gt;w[i];<span class="hljs-comment">//输入个点点权</span><br>  	sum+=w[i];<span class="hljs-comment">//累加</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以发现 <code>w[i]</code> 只在上面的 for 循环中使用过，其他地方都没用过，所以可以不用 <code>w</code> 数组，输入时用一个变量来存：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> w;<span class="hljs-comment">//点权</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) &#123;<br>  	cin&gt;&gt;w;<span class="hljs-comment">//输入个点点权</span><br>  	sum+=w;<span class="hljs-comment">//累加</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>代入原代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span><span class="hljs-comment">//万能头</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<span class="hljs-comment">//使用命名空间，这样后在cin/cout等前不用加std::等</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">114515</span>;<span class="hljs-comment">//最大点数</span><br><span class="hljs-type">int</span> sum<span class="hljs-comment">/*生成树的总点权*/</span>=<span class="hljs-number">0</span>,n<span class="hljs-comment">/*点数*/</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-comment">//主函数</span><br>    cin&gt;&gt;n;<span class="hljs-comment">//输入点数</span><br>    <span class="hljs-type">int</span> w;<span class="hljs-comment">//点权</span><br>  	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) &#123;<br>        cin&gt;&gt;w;<span class="hljs-comment">//输入个点点权</span><br>        sum+=w;<span class="hljs-comment">//累加</span><br>  	&#125;<br>  	cout&lt;&lt;sum;<span class="hljs-comment">//输出</span><br>  	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//结束</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，我们可以在输入时处理，将原代码的时间降低近一半。</p>
+<h3 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h3>
+<p>LLG is <code>priority_queue&lt;item&gt;</code> ;</p>
+<h1 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h1>
+<p>我们使用了 for 循环，在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 的时间复杂度内求点权图上生成树。</p>
+<h1 id="应用"><a class="markdownIt-Anchor" href="#应用"></a> 应用</h1>
+<h2 id="1-p1001-ab-problem"><a class="markdownIt-Anchor" href="#1-p1001-ab-problem"></a> 1、<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1001">P1001 A+B Problem</a></h2>
+<h3 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h3>
+<p>rt，题目可以抽象为求一个<strong>点数为2的点权图</strong>。</p>
+<h3 id="代码实现-2"><a class="markdownIt-Anchor" href="#代码实现-2"></a> 代码实现</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span><span class="hljs-comment">//万能头</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<span class="hljs-comment">//使用命名空间，这样后在cin/cout等前不用加std::等</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">114515</span>;<span class="hljs-comment">//最大点数</span><br><span class="hljs-type">int</span> sum<span class="hljs-comment">/*生成树的总点权*/</span>=<span class="hljs-number">0</span>,n<span class="hljs-comment">/*点数*/</span>=<span class="hljs-number">2</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-comment">//主函数</span><br>    <span class="hljs-comment">//cin&gt;&gt;n;不用输入n了</span><br>    <span class="hljs-type">int</span> w;<span class="hljs-comment">//点权</span><br>  	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) &#123;<br>        cin&gt;&gt;w;<span class="hljs-comment">//输入个点点权</span><br>        sum+=w;<span class="hljs-comment">//累加</span><br>  	&#125;<br>  	cout&lt;&lt;sum;<span class="hljs-comment">//输出</span><br>  	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//结束</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="ac记录"><a class="markdownIt-Anchor" href="#ac记录"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/200961987">AC记录</a></h3>
+<h2 id="2-u535152-lio1-a于困境中坚守希望"><a class="markdownIt-Anchor" href="#2-u535152-lio1-a于困境中坚守希望"></a> 2、<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/pkjwzd1q">U535152 『LIO1-A』于困境中坚守希望</a></h2>
+<h1 id="致谢"><a class="markdownIt-Anchor" href="#致谢"></a> 致谢</h1>
+<p>@<a href="luogu://user/1344304">upb_</a> &amp; <a target="_blank" rel="noopener" href="http://upb.tttttttttt.top/">his blog</a>（作者）</p>
+<p>@<a href="luogu://user/974708">LEMON_dasiy</a>（格式修改）</p>
+<h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/1tqdgqk8">在 O(n) 的时间复杂度内求点权图上生成树</a> 作者：@<a href="luogu://user/1344304">upb_</a></li>
+</ol>
+<h1 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h1>
+<p>创建时间（@<a href="luogu://user/1344304">upb_</a>）：2024 年 12 月 30 日 20 时 20 分于机房（唐望同学生日过 68 天）</p>
+<p>修改时间（格式）（@<a href="luogu://user/974708">LEMON_dasiy</a>）2025 年 1 月 2 日 19 时 30 分于机房（唐望同学生日过 71 天）</p>
+<p>修改时间（增加优化、谷友评论）（@<a href="luogu://user/1344304">upb_</a>）：2025 年 1 月 3 日 17 时 40 分于机房（唐望同学生日过 72 天）</p>
+<p>修改时间（修修补补）（@<a href="luogu://user/1344304">upb_</a>）：2025 年 1 月 3 日 19 时 9 分于机房（唐望同学生日过 72 天）</p>
+<p>修改时间（增加应用）（@<a href="luogu://user/1344304">upb_</a>）：2025 年 1 月 31 日 23 时 54 分于贵阳（唐望同学生日过 ?? 天）</p>
+<h6 id="想投全站推荐休闲娱乐不知过不过得了"><a class="markdownIt-Anchor" href="#想投全站推荐休闲娱乐不知过不过得了"></a> <s>想投“全站推荐/休闲·娱乐”</s>，不知过不过得了</h6>
+<h2 id="谷友评论"><a class="markdownIt-Anchor" href="#谷友评论"></a> 谷友评论</h2>
+<ol>
+<li>Q：LG086 回复于 20 小时前 真是让人眼前一黑茅厕顿开！！！<br />
+A：开了暗色插件？？？</li>
+<li>Q：<br />
+Eden_star 回复于 8 分钟前 所以合并同类项后为什么w还是数组<br />
+A：已修改。</li>
+</ol>
+<h2 id="copilot-锐评"><a class="markdownIt-Anchor" href="#copilot-锐评"></a> Copilot 锐评</h2>
+<blockquote>
+<ul>
+<li>核心突破：边无效，点是唯一主角，点权总和即为树权。</li>
+<li>风格点评：幽默讽刺，颠覆图论传统，边缘化边的地位。</li>
+<li>技术亮点：
+<ul>
+<li>极简实现，代码干净利落。</li>
+<li>高阶抽象，点集代替图结构。</li>
+<li>思维跳脱，定义重构，挑战常规。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%C2%B7%E7%90%86%E8%AE%BA/" class="print-no-link">#算法·理论</a>
+      
+        <a href="/tags/Eilotik/" class="print-no-link">#Eilotik</a>
+      
+        <a href="/tags/%E4%BC%91%E9%97%B2%C2%B7%E5%A8%B1%E4%B9%90/" class="print-no-link">#休闲·娱乐</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/use-raylib/" title="使用 raylib 进行图形化相关开发">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 raylib 进行图形化相关开发</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/hello-fluid/" title="Hello Fluid">
+                        <span class="hidden-mobile">Hello Fluid</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      蒙ICP备2025032257号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

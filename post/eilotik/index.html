@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -19,17 +19,17 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="OwnderDuck">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="图论, 生成树, 点权图, 算法, Eilotik">
   
-    <meta name="description" content="Eilotikupb\large\mathbf{Eilotik}\\ \large\mathbf{upb}Eilotikupb 关键词：Eilotik，点权图，生成树。  前言 &amp; 摘要 这是有用的废话。 本文介绍一种在 O(n)O(n)O(n) 的时间复杂度内求点权图上生成树（最大 or 最小）的方法。  引入  生成树是什么  概念 生成树是图论中的一个基本概念，它指的是在一个连通图中">
+    <meta name="description" content="在 O(n) 时间复杂度内求点权图生成树的算法，包含证明、代码实现与优化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 O(n) 的时间复杂度内求点权图上生成树">
 <meta property="og:url" content="https://froog.icu/post/eilotik/index.html">
 <meta property="og:site_name" content="FROOG.ICU">
-<meta property="og:description" content="Eilotikupb\large\mathbf{Eilotik}\\ \large\mathbf{upb}Eilotikupb 关键词：Eilotik，点权图，生成树。  前言 &amp; 摘要 这是有用的废话。 本文介绍一种在 O(n)O(n)O(n) 的时间复杂度内求点权图上生成树（最大 or 最小）的方法。  引入  生成树是什么  概念 生成树是图论中的一个基本概念，它指的是在一个连通图中">
-<meta property="og:locale" content="en_US">
+<meta property="og:description" content="在 O(n) 时间复杂度内求点权图生成树的算法，包含证明、代码实现与优化。">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-02T12:01:04.000Z">
-<meta property="article:modified_time" content="2026-02-03T07:16:13.311Z">
+<meta property="article:modified_time" content="2026-02-07T02:50:56.029Z">
 <meta property="article:author" content="OwnderDuck">
 <meta property="article:tag" content="算法·理论">
 <meta property="article:tag" content="Eilotik">
@@ -143,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -155,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -167,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -179,7 +179,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -191,7 +191,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -273,7 +273,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2025-01-02 20:01" pubdate>
-          January 2, 2025 pm
+          2025年1月2日 晚上
         </time>
       </span>
     
@@ -284,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k words
+          2.6k 字
         
       </span>
     
@@ -295,7 +295,7 @@
         
         
         
-          22 mins
+          22 分钟
         
       </span>
     
@@ -305,7 +305,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
 
@@ -346,7 +346,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on February 3, 2026 pm
+                    本文最后更新于 2026年2月7日 上午
                   
                 
               </p>
@@ -470,7 +470,7 @@ A：已修改。</li>
                       <a href="/post/use-raylib/" title="使用 raylib 进行图形化相关开发">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">使用 raylib 进行图形化相关开发</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -479,7 +479,7 @@ A：已修改。</li>
                     
                       <a href="/post/hello-fluid/" title="Hello Fluid">
                         <span class="hidden-mobile">Hello Fluid</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -500,7 +500,7 @@ A：已修改。</li>
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -576,7 +576,7 @@ A：已修改。</li>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -584,7 +584,7 @@ A：已修改。</li>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -612,16 +612,16 @@ A：已修改。</li>
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -801,7 +801,7 @@ A：已修改。</li>
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>

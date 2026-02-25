@@ -1,1 +1,1 @@
-https://froog.icu/post/use-helix-to-code/
+https://froog.icu/post/use-NB-head-in-clangd/

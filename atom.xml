@@ -6,7 +6,7 @@
   <link href="https://froog.icu/atom.xml" rel="self"/>
   
   <link href="https://froog.icu/"/>
-  <updated>2026-02-08T11:39:17.973Z</updated>
+  <updated>2026-02-25T11:04:05.049Z</updated>
   <id>https://froog.icu/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>use-NB-head-in-clangd</title>
+    <link href="https://froog.icu/post/use-NB-head-in-clangd/"/>
+    <id>https://froog.icu/post/use-NB-head-in-clangd/</id>
+    <published>2026-02-25T10:55:21.000Z</published>
+    <updated>2026-02-25T11:04:05.049Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 <code>~/.config/clangd/config.yaml</code>（全局）或项目根目录下 <code>.clangd</code> 编辑：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">CompileFlags:</span><br>  <span class="hljs-attr">Add:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-std=c++20&quot;</span> <span class="hljs-comment"># 使用C++20</span><br>    <span class="hljs-comment"># 1. C++ 标准库</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-I/usr/include/c++/15.2.1&quot;</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu&quot;</span><br>    <span class="hljs-comment"># 2. 编译器私有</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include&quot;</span><br>    <span class="hljs-comment"># 3. 基础 C 库</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-I/usr/include&quot;</span><br>    <span class="hljs-comment"># 4. 项目本地路径</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-I.&quot;</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;-Wno-unknown-pragmas&quot;</span><br><br><span class="hljs-attr">Config:</span><br>  <span class="hljs-attr">Completion:</span><br>    <span class="hljs-comment"># 禁用自动插入头文件</span><br>    <span class="hljs-attr">HeaderInsertion:</span> <span class="hljs-string">Never</span><br></code></pre></td></tr></table></figure><p>完成。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 &lt;code&gt;~/.config/clangd/config.yaml&lt;/code&gt;（全局）或项目根目录下 &lt;code&gt;.clangd&lt;/code&gt; 编辑：&lt;/p&gt;
+&lt;figure class=&quot;highlight yaml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="C++" scheme="https://froog.icu/tags/C/"/>
+    
+    <category term="clangd" scheme="https://froog.icu/tags/clangd/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Helix 优雅地在终端中写代码</title>

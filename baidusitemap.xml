@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://froog.icu/post/about-MCFROOGICU/</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
     <loc>https://froog.icu/post/use-NB-head-in-clangd/</loc>
     <lastmod>2026-02-25</lastmod>
   </url>
@@ -29,15 +33,11 @@
     <lastmod>2026-02-07</lastmod>
   </url>
   <url>
-    <loc>https://froog.icu/post/j%E8%BF%91%E8%A7%86%E7%8C%B4%E4%BB%81/</loc>
+    <loc>https://froog.icu/post/%E8%BF%91%E8%A7%86%E7%8C%B4%E4%BB%81/</loc>
     <lastmod>2026-02-07</lastmod>
   </url>
   <url>
     <loc>https://froog.icu/post/eilotik/</loc>
-    <lastmod>2026-02-07</lastmod>
-  </url>
-  <url>
-    <loc>https://froog.icu/post/about-MCFROOGICU/</loc>
     <lastmod>2026-02-07</lastmod>
   </url>
   <url>
